@@ -27,7 +27,7 @@ public:
   : Node("gripper_subscriber")
   {
     subscription_ = this->create_subscription<px4_msgs::msg::GripperEngageStatus>(
-      "GripperEngageStatus_PubSubTopic", 10, std::bind(&GripperSubscriber::topic_callback, this, _1));
+      "fmu/gripper_engage_status/in", 10, std::bind(&GripperSubscriber::topic_callback, this, _1));
   }
 
 private:
