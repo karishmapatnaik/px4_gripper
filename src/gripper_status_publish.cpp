@@ -82,8 +82,10 @@ private:
   void topic_callback(const px4_msgs::msg::VehicleOdometry::SharedPtr msg) 
   {
     error = pow(((msg->x - target_pos[0])*(msg->x - target_pos[0])) + ((msg->y - target_pos[1])*(msg->y - target_pos[1])) + ((msg->z - target_pos[2])*(msg->z - target_pos[2])),0.5);
+    std::cout<<error<<std::endl;
+    std::cout<<flag_reach_target<<std::endl;
     if ((abs(error) < 0.5) && (!flag_reach_target)) {
-    	flag_reach_target = true;
+    		flag_reach_target = true;
     }
   }
   
@@ -97,11 +99,12 @@ private:
   bool flag_reach_target = false;
   bool flag_set = false;
   
-  std::vector<float> target_pos{0.0, 0.0, -0.9};
+  // std::vector<float> target_pos{-0.006, 0.09, -0.28};
+  std::vector<float> target_pos{0.0, 0.0, -0.75};
   float error = 0.0;
   float wait_time = 0.0;
   time_t reach_time, current_time;
-  float user_defined_wait_time = 3.0;
+  float user_defined_wait_time = 10.0;
 
   size_t count_;
 };
